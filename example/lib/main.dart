@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:tencent_cos_sdk/tencent_cos_sdk.dart';
 
 void main() {
+  // Ensure Flutter bindings are initialized before using platform channels
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

@@ -1,10 +1,12 @@
 import 'dart:async';
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'tencent_cos_sdk_platform_interface.dart';
 export 'src/models/models.dart';
 export 'src/services/services.dart';
+export 'src/enums/enums.dart';
+export 'src/exceptions/exceptions.dart';
+export 'src/api/api.dart';
 
 /// Main class for the Tencent COS SDK plugin.
 /// This class provides a comprehensive API for interacting with Tencent Cloud Object Storage,

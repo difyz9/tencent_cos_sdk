@@ -214,8 +214,221 @@ class MockTencentCosSdkPlatform
     ];
   }
 
-  // 其他高级功能的实现（为了简洁，这里省略）
-  // 实际测试时需要实现所有接口方法
+  // 高级存储桶操作
+  @override
+  Future<Map<String, dynamic>> putBucketACL({
+    required String bucketName,
+    required String acl,
+    List<String>? grantRead,
+    List<String>? grantWrite,
+    List<String>? grantFullControl,
+  }) async {
+    return {'statusCode': 200};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> getBucketACL({
+    required String bucketName,
+  }) async {
+    return {'statusCode': 200, 'acl': 'private'};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> putBucketCORS({
+    required String bucketName,
+    required List<Map<String, dynamic>> corsRules,
+  }) async {
+    return {'statusCode': 200};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> getBucketCORS({
+    required String bucketName,
+  }) async {
+    return {'statusCode': 200, 'corsRules': []};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> deleteBucketCORS({
+    required String bucketName,
+  }) async {
+    return {'statusCode': 204};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> putBucketReferer({
+    required String bucketName,
+    required String refererType,
+    required List<String> domains,
+    required bool emptyReferer,
+  }) async {
+    return {'statusCode': 200};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> getBucketReferer({
+    required String bucketName,
+  }) async {
+    return {'statusCode': 200, 'refererType': 'White-List', 'domains': []};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> putBucketAccelerate({
+    required String bucketName,
+    required bool enabled,
+  }) async {
+    return {'statusCode': 200};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> getBucketAccelerate({
+    required String bucketName,
+  }) async {
+    return {'statusCode': 200, 'enabled': false};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> putBucketTagging({
+    required String bucketName,
+    required Map<String, String> tags,
+  }) async {
+    return {'statusCode': 200};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> getBucketTagging({
+    required String bucketName,
+  }) async {
+    return {'statusCode': 200, 'tags': {}};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> deleteBucketTagging({
+    required String bucketName,
+  }) async {
+    return {'statusCode': 204};
+  }
+  
+  // 高级对象操作
+  @override
+  Future<Map<String, dynamic>> putObjectACL({
+    required String bucketName,
+    required String cosPath,
+    required String acl,
+    List<String>? grantRead,
+    List<String>? grantFullControl,
+  }) async {
+    return {'statusCode': 200};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> getObjectACL({
+    required String bucketName,
+    required String cosPath,
+  }) async {
+    return {'statusCode': 200, 'acl': 'private'};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> putObjectTagging({
+    required String bucketName,
+    required String cosPath,
+    required Map<String, String> tags,
+    String? versionId,
+  }) async {
+    return {'statusCode': 200};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> getObjectTagging({
+    required String bucketName,
+    required String cosPath,
+    String? versionId,
+  }) async {
+    return {'statusCode': 200, 'tags': {}};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> deleteObjectTagging({
+    required String bucketName,
+    required String cosPath,
+    String? versionId,
+  }) async {
+    return {'statusCode': 204};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> deleteMultipleObjects({
+    required String bucketName,
+    required List<String> cosPaths,
+    bool quiet = true,
+  }) async {
+    return {'statusCode': 200, 'deleted': cosPaths};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> uploadDirectory({
+    required String bucketName,
+    required String localDirPath,
+    required String cosPrefix,
+    bool recursive = true,
+    void Function(int completed, int total)? onProgress,
+    void Function(String fileName, bool success)? onFileComplete,
+  }) async {
+    return {'statusCode': 200, 'uploaded': 10};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> deleteDirectory({
+    required String bucketName,
+    required String cosPath,
+    bool recursive = true,
+  }) async {
+    return {'statusCode': 200, 'deleted': 5};
+  }
+  
+  @override
+  Future<Map<String, dynamic>> restoreObject({
+    required String bucketName,
+    required String cosPath,
+    required int days,
+    String tier = 'Standard',
+  }) async {
+    return {'statusCode': 200};
+  }
+  
+  // 网络配置
+  @override
+  Future<void> setCustomDNS(Map<String, List<String>> dnsMap) async {
+    return Future.value();
+  }
+  
+  @override
+  Future<void> preBuildConnection(String bucketName) async {
+    return Future.value();
+  }
+  
+  @override
+  Future<void> configureService({
+    String? region,
+    int? connectionTimeout,
+    int? socketTimeout,
+    bool? isHttps,
+    bool? accelerate,
+    String? hostFormat,
+    String? userAgent,
+  }) async {
+    return Future.value();
+  }
+  
+  @override
+  Future<void> configureTransfer({
+    int? divisionForUpload,
+    int? sliceSizeForUpload,
+    bool? verifyContent,
+  }) async {
+    return Future.value();
+  }
   
   @override
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
